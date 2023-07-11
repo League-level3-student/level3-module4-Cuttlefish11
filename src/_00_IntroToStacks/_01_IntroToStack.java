@@ -27,7 +27,8 @@ int i1 = Integer.parseInt(s1);
 int i2 = Integer.parseInt(s2);
         // 4. Pop all the elements off of the Stack. Every time a double is popped that is
         //    between the two numbers entered by the user, print it to the screen.
-for (int i = pile.size(); i > -1; i--) {
+
+for (int i = pile.size()-1; i > -1; i--) {
 	if(i1 > i2) {
 		if(pile.get(i) >= i2 && pile.get(i) <= i1) {
 			System.out.println(pile.get(i));
@@ -37,11 +38,14 @@ for (int i = pile.size(); i > -1; i--) {
 			pile.pop();
 		}
 	}
-	if(i1<i2) {
-		
-	}
-	else {
-		pile.pop();
+	else if(i1<i2) {
+		if(pile.get(i) <= i2 && pile.get(i) >= i1) {
+			System.out.println(pile.get(i));
+			pile.pop();
+		}
+		else {
+			pile.pop();
+		}	
 	}
 }
 
