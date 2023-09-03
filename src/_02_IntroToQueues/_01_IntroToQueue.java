@@ -1,5 +1,6 @@
 package _02_IntroToQueues;
 
+import java.util.ArrayDeque;
 import java.util.Random;
 import java.util.Stack;
 
@@ -43,26 +44,47 @@ static Stack pile = new Stack<Double>();
         // 2. Use a loop to add 100 random doubles between 0 and 100 to the Stack
 for (int i = 0; i < 100; i++) {
 	Random ran = new Random();
-	double d = ran.nextDouble();
+	double d = (ran.nextDouble())*100;
 	//figure out how to make it 0 to 100. Also, go back and do TestMatchingBrackets
 	pile.add(d);
 }
 System.out.println(pile);
         // 3. Create a Queue of Doubles using the ArrayDeque class
         //    Note: you have to use the capitalized Double and not double
-
+ArrayDeque<Double> ueueueue = new ArrayDeque<Double>();
         // 4. Pop off 5 elements from the Stack and add them to the Queue 
-
+for (int i = 0; i < 5; i++) {
+	ueueueue.add((Double) pile.lastElement());
+	pile.pop();
+}
         // 5. Print and remove a random number of elements, from 1 to 5 elements,
         //    from the front of the Queue. Example:
         //    "removing 3 elements from Queue: 25 57 2"
-
+Random ran = new Random();
+int r = ran.nextInt(5);
+System.out.println("Removing " + r + " valient numbers from the queueue:");
+for (int i = 0; i < r; i++) {
+	System.out.println(ueueueue.peekFirst());
+	ueueueue.remove();
+}
+System.out.println("Other dead numbers from the queueue:");
+for (int i = 0; i < (5-r); i++) {
+	System.out.println(ueueueue.peekFirst());
+	ueueueue.remove();
+}
         // 6. Pop off as many elements from the stack to fill the Queue with 5
         //    elements. If there aren't enough elements in the Stack to fill the 
         //    queue, fill the queue as much as possible. 
 
         // 7. Loop until there are no more elements in either the Stack or Queue
         //    and all the elements are printed
-        
+System.out.println("Death to numbers! The number war has commenced!");
+ueueueue.addAll(pile);
+for (int i = 0; i < pile.size(); i++) {
+	System.out.println(pile.lastElement());
+	pile.pop();
+	ueueueue.remove();
+}      
+System.out.println("survivng numbers: null");
     }
 }
