@@ -14,12 +14,16 @@ import javax.swing.JPanel;
 
 
 
-public class Hangman implements ActionListener {
+public class Hangman implements ActionListener, KeyListener {
 JPanel panel = new JPanel();
 JFrame frame = new JFrame();
 JLabel label = new JLabel();
 Stack words = new Stack<String>();
 Stack pile =  new Stack<String>();
+String s = "";
+char[] rwc;
+String t=new String();
+int l = 5;
 
 public static void main(String[] args) {
 	new Hangman().SPACE();
@@ -34,7 +38,7 @@ for (int i = 0; i < nums2; i++) {
 }
 String rw = (String) words.lastElement();
 words.pop();
-char[] rwc = rw.toCharArray();
+rwc = rw.toCharArray();
 for (int i = 0; i < rwc.length; i++) {
 	String zzyzx = Character.toString(rwc[i]);
 	pile.push(zzyzx);
@@ -44,16 +48,59 @@ frame.add(panel);
 panel.add(label);
 frame.setVisible(true);
 label.setVisible(true);
-frame.addKeyListener((KeyListener) this);
+//frame.addKeyListener((KeyListener) this);
+
 for (int i = 0; i < rwc.length; i++) {
-	String s = label.getText();
-	label.setText(s + " _");
+	s=s+"_";
+	System.out.println(s);
 }
+frame.addKeyListener(this);
+label.setText(s);
 frame.pack();
 }
 
-public void keyPressed(KeyEvent e) {
 
+/*@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	
+for (int i = 0; i < rwc.length; i++) {
+	if(q==rwc[i]) {
+		
+	}
+}
+} */
+@Override
+public void keyTyped(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+@Override
+public void keyPressed(KeyEvent e) {
+	// TODO Auto-generated method stub
+	char c = e.getKeyChar();
+	t=s;
+	char[] tmv=t.toCharArray();
+	s= new String();
+	for (int i = 0; i < rwc.length; i++) {
+		
+		if(c==rwc[i]) {
+			s=s+ c ;
+		}
+		else {
+			s=s+ tmv[i];
+		}
+	}
+	if(s==t) {
+		l--;
+	}
+	label.setText(t);
+	JOptionPane.showMessageDialog(null, "Lives: "+l);
+}
+@Override
+public void keyReleased(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
 }
 @Override
 public void actionPerformed(ActionEvent e) {
