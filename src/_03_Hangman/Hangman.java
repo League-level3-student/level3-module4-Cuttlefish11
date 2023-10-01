@@ -24,9 +24,11 @@ String s = "";
 char[] rwc;
 String t=new String();
 int l = 5;
+String a;
 
 public static void main(String[] args) {
 	new Hangman().SPACE();
+	
 }
 public void SPACE() {
 String nums = JOptionPane.showInputDialog("Enter a number from 2 to 260.");
@@ -58,18 +60,26 @@ frame.addKeyListener(this);
 label.setText(s);
 frame.pack();
 }
-
-
-/*@Override
-public void actionPerformed(ActionEvent e) {
-	// TODO Auto-generated method stub
+public void reset() {
+	System.out.println("GAME OVER");
 	
-for (int i = 0; i < rwc.length; i++) {
-	if(q==rwc[i]) {
-		
+	String s = "";
+	String t=new String();
+	l = 5;
+	
+	String rw = (String) words.lastElement();
+	words.pop();
+	rwc = rw.toCharArray();
+	for (int i = 0; i < rwc.length; i++) {
+		String zzyzx = Character.toString(rwc[i]);
+		pile.push(zzyzx);	
 	}
-}
-} */
+	for (int i = 0; i < rwc.length; i++) {
+		s=s+"_";
+		System.out.println(s);
+	}
+	label.setText(s);	
+}	
 @Override
 public void keyTyped(KeyEvent e) {
 	// TODO Auto-generated method stub
@@ -78,6 +88,9 @@ public void keyTyped(KeyEvent e) {
 @Override
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
+	if(l==0) {
+		reset();
+	}
 	char c = e.getKeyChar();
 	t=s;
 	char[] tmv=t.toCharArray();
@@ -91,11 +104,13 @@ public void keyPressed(KeyEvent e) {
 			s=s+ tmv[i];
 		}
 	}
-	if(s==t) {
+	if(s.equals(t)) {
 		l--;
 	}
 	label.setText(t);
 	JOptionPane.showMessageDialog(null, "Lives: "+l);
+	
+
 }
 @Override
 public void keyReleased(KeyEvent e) {
