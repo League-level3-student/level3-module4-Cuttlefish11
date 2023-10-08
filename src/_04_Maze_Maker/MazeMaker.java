@@ -24,10 +24,21 @@ public class MazeMaker {
         //    the opposite wall and remove its exterior wall. This will be the
         //    finish line.
         
-        // 2. select a random cell in the maze to start 
+        Cell[][] cells = maze.cells;
+        for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+			
+		}
+    }
+       //
         
+       // removeWalls(c1,c2);
+        // 2. select a random cell in the maze to start 
+        Random ran = new Random();
+        int rr=ran.nextInt(r);
+        int rc=ran.nextInt(c);
         // 3. call the selectNextPath method with the randomly selected cell
-
+selectNextPath(cells[rr][rc]);
         return maze;
     }
 
